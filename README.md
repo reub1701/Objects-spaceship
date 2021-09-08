@@ -1,6 +1,6 @@
 # Objects-spaceship
 This code follows the Objects lesson
-How do I access the methods of each crew member?
+How do I access the methods of each crew member? (See Line 34-61!)
 
 let spaceship = {
   crew: {
@@ -30,3 +30,32 @@ let spaceship = {
 for (let crewMember in spaceship.crew) {
   console.log(`${crewMember}: ${spaceship.crew[crewMember].name}`);
 }
+
+for (let crewMember in spaceship.crew) {
+  //shorten spaceship.crew[crewMember] to ref for convenience
+  const ref = spaceship.crew[crewMember];
+  const name = ref.name;
+  //function to determine which method to invoke
+  const myFunction = memberName => {
+    switch (memberName) {
+      case 'Lily':
+        return ref.cheerTeam();
+      case 'Dan':
+        return ref.agree();
+      case 'Clementine':
+        return ref.announce();
+      case 'Shauna':
+        return ref.powerFuel();
+      default:
+        return 'Hello World!';
+    }
+  }
+
+  console.log(`${name}: ${myFunction(name)}`);
+}
+/*Output:
+Lily: You got this!
+Dan: I agree, captain!
+Clementine: Jets on!
+Shauna: The tank is full!
+*/
